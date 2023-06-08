@@ -1,6 +1,7 @@
 const Photo = require('../models/photo.model');
 const Voter = require('../models/voter.model');
 const path = require('path');
+const requestIp = require('request-ip');
 
 
 /****** SUBMIT PHOTO ********/
@@ -48,32 +49,32 @@ exports.loadAll = async (req, res) => {
 
 /****** VOTE FOR PHOTO ********/
 
+
 exports.vote = async (req, res) => {
   try {
     const photoId = req.params.id;
-    const user = req.headers['x-forwarded-for'] || req.connection.remoteAddress; // Get the user's IP address
+    const user = requestIp.getClientIp(req) // Get the user's IP address
 
-    const voter = await Voter.findOne({ user }); // Find the corresponding Voter document
+    let voter = await Voter.findOne({ user }); // Find the corresponding Voter document
     if (!voter) {
-      return res.status(500).json({ message: 'Invalid request.' }); // Assume IP address is already in the database
+      voter = new Voter({ user: user, votes: [] })
     }
-
     const photo = await Photo.findOne({ _id: photoId }); // Find the selected photo
     if (!photo) {
       return res.status(404).json({ message: 'Not found' });
     }
 
     if (voter.votes.includes(photoId)) {
-      return res.status(500).json({ message: 'Already voted for this photo.' }); // Photo has already been voted on
+      return res.status(500).json({ message: 'You have already voted for this photo.' }); // The user has already voted for this photo
     }
 
-    voter.votes.push(photoId); // Add the photo ID to the voter's votes attribute
+    voter.votes.push(photoId); // Add the photo ID to the voter's votes array
     await voter.save(); // Save the Voter document
 
     photo.votes++; // Increase the number of votes for the photo
     await photo.save();
 
-    res.send({ message: 'OK' });
+    res.send({ message: 'Vote added successfully.' });
   } catch (err) {
     res.status(500).json(err);
   }
