@@ -1,0 +1,112 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongodb://localhost:27017/companyDB
+mongodb://localhost:27017/companyDB
+Current Mongosh Log ID: 643d588a1c7cf8d398b97d72
+Connecting to:          mongodb://localhost:27017/companyDB?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.8.0
+Using MongoDB:          6.0.5
+Using Mongosh:          1.8.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-04-16T20:08:33.543+02:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId("643d4800c4798fc691210080"),
+    firstName: 'John',
+    lastName: 'Doe',
+    department: 'IT'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210081"),
+    firstName: 'Amanda',
+    lastName: 'Doe',
+    department: 'Marketing'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210082"),
+    firstName: 'Jonathan',
+    lastName: 'Wilson',
+    department: 'IT'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210083"),
+    firstName: 'Thomas',
+    lastName: 'Jefferson',
+    department: 'Testing'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210084"),
+    firstName: 'Emma',
+    lastName: 'Cowell',
+    department: 'Testing'
+  }
+]
+companyDB> db.products.find()
+[
+  {
+    _id: ObjectId("643d57d2c4798fc69121008d"),
+    name: 'New Wave Festival',
+    client: 'MyMusciWave Corp'
+  },
+  {
+    _id: ObjectId("643d57d2c4798fc69121008e"),
+    name: 'ImRich Banking official website',
+    client: 'ImRich LTD'
+  }
+]
+companyDB> db.departments.find()
+[
+  { _id: ObjectId("643d571fc4798fc69121008a"), name: 'IT' },
+  { _id: ObjectId("643d571fc4798fc69121008b"), name: 'Marketing' },
+  { _id: ObjectId("643d571fc4798fc69121008c"), name: 'Testing' }
+]
+companyDB> db.employees.find()
+[
+  {
+    _id: ObjectId("643d4800c4798fc691210080"),
+    firstName: 'John',
+    lastName: 'Doe',
+    department: 'IT'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210081"),
+    firstName: 'Amanda',
+    lastName: 'Doe',
+    department: 'Marketing'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210082"),
+    firstName: 'Jonathan',
+    lastName: 'Wilson',
+    department: 'IT'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210083"),
+    firstName: 'Thomas',
+    lastName: 'Jefferson',
+    department: 'Testing'
+  },
+  {
+    _id: ObjectId("643d4800c4798fc691210084"),
+    firstName: 'Emma',
+    lastName: 'Cowell',
+    department: 'Testing'
+  }
+]
+companyDB>
